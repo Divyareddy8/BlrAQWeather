@@ -107,9 +107,7 @@ This uses `preprocessed_data.csv` and saves `.pkl` models to the `models/` folde
 
 ---
 
-## 💬 Credits
+##  Feel free to contribute or fork! Happy Forecasting ☁️📊🌍
 
-Developed by Divya🌱
-Guided by curiosity in data + environment + visualization 🌍✨
-🟢 Feel free to contribute or fork! Happy Forecasting ☁️📊
+
 
