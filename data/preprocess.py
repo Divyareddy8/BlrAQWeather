@@ -11,7 +11,7 @@ df.rename(columns={
     'MinTemp': 'tmin'
 }, inplace=True)
 
-# 🌟 Feature Engineering
+#  Feature Engineering
 df['day'] = df['Date'].dt.day
 df['month'] = df['Date'].dt.month
 df['year'] = df['Date'].dt.year
@@ -22,6 +22,6 @@ df['hour'] = 0
 # 🧹 Handle missing values
 df.dropna(inplace=True)
 
-# ✅ Save preprocessed file
+#  Save preprocessed file
 df.to_csv("preprocessed_data.csv", index=False)
-print("✅ Preprocessing complete! Saved as preprocessed_data.csv")
+print(" Preprocessing complete! Saved as preprocessed_data.csv")
