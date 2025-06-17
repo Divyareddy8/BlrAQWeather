@@ -1,38 +1,48 @@
 # 🌤️ EnviroCast: Weather & Air Quality Dashboard for Bangalore
 
-EnviroCast is a user-friendly Streamlit dashboard that allows users to visualize, analyze, and predict **air quality** and **weather trends** in Bangalore. It combines pollution and climate datasets to generate interactive visualizations and forecasts using machine learning.
+**EnviroCast** is a user-friendly **Streamlit dashboard** that allows users to **visualize**, **analyze**, and **predict** both **air quality** and **weather trends** in Bangalore.  
+It merges pollution and weather datasets, applies machine learning models, and generates interactive charts and forecasts.
+
+---
+
+## 🛠️ Tech Stack
+
+- 🐍 Python 3.10+
+- 📊 Pandas, Matplotlib
+- 🤖 scikit-learn, XGBoost, Joblib
+- 🌐 Streamlit for web dashboard
+- 🧹 Custom Python scripts for preprocessing & merging
 
 ---
 
 ## 🚀 Features
 
 ### 📂 CSV Upload
-- Upload your **cleaned or preprocessed dataset** (CSV format).
-- Get a quick **preview** of the dataset.
-- View all available **columns** and parameters.
+- Upload your **cleaned or preprocessed dataset** (`.csv`).
+- View a quick **preview** and list of **columns** detected.
 
 ### 📈 Trend Visualization
-- Choose any column (e.g., NO₂, PM2.5, Temperature) to plot time-series **line charts**.
-- Great for analyzing pollution and weather patterns over time.
+- Select any column (e.g., NO₂, PM2.5, Temperature) to generate a **time-series chart**.
+- Easily visualize trends in **pollution and climate over time**.
 
 ### 🧠 Predictive Modeling
 - Use sliders to input:
-  - 🌡️ Temperature, Max/Min Temp, Precipitation
-  - 📆 Day, Month, Hour of the day
+  - 🌡️ Temperature, Max Temp, Min Temp, Precipitation
+  - 📅 Day, Month, Hour
 - Predict:
-  - 🔬 **Nitrogen Dioxide (NO₂)** level
-  - 🌡️ **Temperature (next hour)**
+  - 🔬 **Nitrogen Dioxide (NO₂)** in µg/m³  
+  - 🌡️ **Temperature (next hour)** in °C  
   - 🧪 **PM2.5** – Particulate Matter < 2.5µm  
   - 🧪 **PM10** – Particulate Matter < 10µm  
-  - 🧪 **CO** – Carbon Monoxide (ppm)
+  - 🧪 **Carbon Monoxide (CO)** in ppm
 
 ---
 
 ## 🧩 How to Use
 
-### 1. 🔧 Install Dependencies
+### 1. 🔧 Install Requirements
 
-Make sure you have Python 3.10+ installed, then install dependencies using:
+Make sure you have Python 3.10+ installed. Then install the required packages:
 
 ```bash
 pip install -r requirements.txt
@@ -40,43 +50,64 @@ pip install -r requirements.txt
 
 ---
 
-### 2. 📊 If You Want to Upload Your Own Data
+### 2. ▶️ Start the App
 
-If you have these data individually:
+To launch the dashboard locally:
 
-* **Air quality data** (`air_quality.csv`)
-* **Weather data** (`weather.csv`)
+```bash
+streamlit run app.py
+```
 
-Use the following workflow:
+It will open in your browser 
 
-#### ✅ Merge the Datasets
+---
 
-Run:
+### 3. 📊 Upload Your Own Dataset
+
+If you have two separate CSV files:
+
+* **`air_quality.csv`**
+* **`weather.csv`**
+
+Follow this process:
+
+#### ✅ Step 1: Merge the Datasets
+
+Merge based on the common `Date` column:
 
 ```bash
 python merge_datasets.py
 ```
 
-This merges both datasets **on the Date column** and saves as `merged_data.csv`.
+This creates `merged_data.csv`.
 
-#### 🧼 Preprocess the Merged Data
+#### 🧼 Step 2: Preprocess the Data
 
-Run:
+Clean the merged data for modeling:
 
 ```bash
 python preprocess.py
 ```
 
-This cleans and transforms the data, saves as `preprocessed_data.csv`.
-
-> ✅ Now upload `preprocessed_data.csv` via the web dashboard to visualize and make predictions!
+This creates `preprocessed_data.csv` — which you can **upload on the dashboard**.
 
 ---
 
+## 🔁 Model Training (Optional)
+
+If you want to retrain or update your models:
+
+```bash
+python train_models.py
+```
+
+This reads `preprocessed_data.csv` and saves ML models (e.g., `model_no2.pkl`, `model_temp.pkl`) to the `/models` folder.
+
+---
 
 ## 📦 Requirements
 
-Your `requirements.txt` should include:
+Contents of `requirements.txt`:
 
 ```txt
 streamlit
@@ -87,7 +118,7 @@ matplotlib
 joblib
 ```
 
-Install with:
+Install using:
 
 ```bash
 pip install -r requirements.txt
@@ -95,19 +126,10 @@ pip install -r requirements.txt
 
 ---
 
-## 🧠 Model Training (Optional)
+## ✨ Contribute & Explore
 
-If you want to **retrain models**, run:
+Feel free to fork the repo, open issues, or contribute enhancements!
 
-```bash
-python train_models.py
-```
-
-This uses `preprocessed_data.csv` and saves `.pkl` models to the `models/` folder.
-
----
-
-##  Feel free to contribute or fork! Happy Forecasting ☁️📊🌍
-
-
+🌀 Built with care to help Bangalore breathe better.
+📊 Forecast wisely. Breathe consciously.
 
