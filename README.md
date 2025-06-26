@@ -1,7 +1,7 @@
 # 🌤️ EnviroCast: Weather & Air Quality Dashboard for Bangalore
 
 **EnviroCast** is a user-friendly **Streamlit dashboard** that allows users to **visualize**, **analyze**, and **predict** both **air quality** and **weather trends** in Bangalore.  
-It merges pollution and weather datasets, applies machine learning models, and generates interactive charts and forecasts.
+It merges pollution and weather datasets, applies machine learning models, and generates interactive charts and forecasts — now with **custom NO₂ heatmap generation** using grid-level uploaded CSVs!
 
 ---
 
@@ -18,8 +18,8 @@ It merges pollution and weather datasets, applies machine learning models, and g
 ## 🚀 Features
 
 ### 📂 CSV Upload
-- Upload your **cleaned or preprocessed dataset** (`.csv`).
-- View a quick **preview** and list of **columns** detected.
+- Upload your **cleaned or preprocessed dataset** (`.csv`) for trend visualization.
+- Upload a separate **NO₂ heatmap grid-level dataset** (e.g., `blr_2022_inference.csv`) for geospatial rendering.
 
 ### 📈 Trend Visualization
 - Select any column (e.g., NO₂, PM2.5, Temperature) to generate a **time-series chart**.
@@ -36,13 +36,19 @@ It merges pollution and weather datasets, applies machine learning models, and g
   - 🧪 **PM10** – Particulate Matter < 10µm  
   - 🧪 **Carbon Monoxide (CO)** in ppm
 
+### 🗺️ NO₂ Heatmap
+- Upload a **grid-level CSV file** (`blr_2022_inference.csv` or your custom file) containing lat/lon and weather columns.
+- Choose between **Folium** or **Plotly** map rendering.
+- Adjust driving features (temperature, precip, tmax, etc.).
+- Get an **interactive NO₂ prediction map** across Bangalore!
+
 ---
 
 ## 🧩 How to Use
 
 ### 1. 🔧 Install Requirements
 
-Make sure you have Python 3.10+ installed. Then install the required packages:
+Ensure Python 3.10+ is installed. Then:
 
 ```bash
 pip install -r requirements.txt
@@ -52,62 +58,66 @@ pip install -r requirements.txt
 
 ### 2. ▶️ Start the App
 
-To launch the dashboard locally:
-
 ```bash
 streamlit run app.py
 ```
 
-It will open in your browser 
+Access the dashboard via browser.
 
 ---
 
-### 3. 📊 Upload Your Own Dataset
+### 3. 📊 Upload Your Dataset
 
-If you have two separate CSV files:
+If you have two datasets like:
 
-* **`air_quality.csv`**
-* **`weather.csv`**
+* `air_quality.csv`
+* `weather.csv`
 
-Follow this process:
-
-#### ✅ Step 1: Merge the Datasets
-
-Merge based on the common `Date` column:
+Merge them first:
 
 ```bash
 python merge_datasets.py
 ```
 
-This creates `merged_data.csv`.
-
-#### 🧼 Step 2: Preprocess the Data
-
-Clean the merged data for modeling:
+Then clean the merged file:
 
 ```bash
 python preprocess.py
 ```
 
-This creates `preprocessed_data.csv` — which you can **upload on the dashboard**.
+This creates `preprocessed_data.csv` for trend analysis & predictions.
+
+---
+
+### 4. 🌍 Upload for Heatmap (NEW 🔥)
+
+You can now upload a **grid-level dataset** (e.g., `blr_2022_inference.csv`) with latitude, longitude, temperature, etc., to render a **city-wide NO₂ heatmap**.
+
+Example structure:
+
+```csv
+latitude,longitude,temperature,precip,tmax,tmin,day,month,hour
+12.97,77.59,27.0,0.1,32,22,15,6,10
+...
+```
 
 ---
 
 ## 🔁 Model Training (Optional)
 
-If you want to retrain or update your models:
+Train models from your processed dataset:
 
 ```bash
 python train_models.py
 ```
 
-This reads `preprocessed_data.csv` and saves ML models (e.g., `model_no2.pkl`, `model_temp.pkl`) to the `/models` folder.
+This generates `.pkl` model files in `/models`.
 
 ---
 
 ## 📦 Requirements
 
-Contents of `requirements.txt`:
+`requirements.txt` includes:
 
 ```txt
 streamlit
@@ -116,9 +126,12 @@ scikit-learn
 xgboost
 matplotlib
 joblib
+plotly
+folium
+branca
 ```
 
-Install using:
+Install via:
 
 ```bash
 pip install -r requirements.txt
@@ -128,8 +141,7 @@ pip install -r requirements.txt
 
 ## ✨ Contribute & Explore
 
-Feel free to fork the repo, open issues, or contribute enhancements!
+Feel free to fork, raise issues, or enhance features!
 
 🌀 Built with care to help Bangalore breathe better.
 📊 Forecast wisely. Breathe consciously.
-
