@@ -28,7 +28,7 @@ model_no2 = RandomForestRegressor()
 model_no2.fit(X_train_no2, y_train_no2)
 
 joblib.dump(model_no2, "models/model_no2.pkl")
-print("✅ model_no2.pkl saved!")
+print(" model_no2.pkl saved!")
 
 # -----------------------------------------------
 # 🔹 Model 2: Predict Next Day's Temperature
@@ -47,7 +47,7 @@ model_temp = XGBRegressor()
 model_temp.fit(X_train_temp, y_train_temp)
 
 joblib.dump(model_temp, "models/model_temp.pkl")
-print("✅ model_temp.pkl saved!")
+print(" model_temp.pkl saved!")
 
 # ---------------------------------------------------
 # 🔹 Additional Models: PM2.5, PM10, CO (if available)
@@ -67,6 +67,6 @@ for pollutant, filename in pollutants.items():
         model = RandomForestRegressor()
         model.fit(X_train, y_train)
         joblib.dump(model, f"models/{filename}")
-        print(f"✅ {filename} saved!")
+        print(f" {filename} saved!")
     else:
-        print(f"⚠️ Column '{pollutant}' not found, skipping...")
+        print(f" Column '{pollutant}' not found, skipping...")
